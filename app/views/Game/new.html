@@ -1,0 +1,83 @@
+<tabset justified="true">
+    <tab heading="Game">
+        <br><h4 class="text-center">Tennis game counter</h4>
+        <strong>game:</strong> to {{game.game}} points<br>
+        <strong>Innings:</strong> {{game.serves}}<br>
+        <strong>Current player is:</strong> {{currentPlayer}}<br>
+        <strong>Remains innings:</strong> {{game.serves - innings_count}}
+        <hr>
+        <h1 class="text-center">{{game.p1_score}} : {{game.p2_score}}</h1>
+        <h1 class="text-center" ng-show="!gameEnable">{{game.p_win}} is win !!!</h1>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-xs-6">
+                <h4 class="text-center"> {{game.p1_name}}</h4>
+                <p ng-if="p1_check" class="tennis-error text-center">Please enter Player 1 name in configure tab</p>
+                <br>
+                <div class="text-center">
+                    <button class="btn btn-default btn-success tennis-btn" ng-click="p1_plus()" ng-disabled="!gameEnable || p1_check && p2_check">+1 Point</button>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xs-6">
+                <h4 class="text-center">{{game.p2_name}}</h4>
+                <p ng-if="p2_check" class="tennis-error text-center">Please enter Player 2 name in configure tab</p>
+                <br>
+                <div class="text-center">
+                    <button class="btn btn-default btn-success tennis-btn" ng-click="p2_plus()" ng-disabled="!gameEnable || p1_check && p2_check">+1 Point</button>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12 text-center">
+                <button class="btn btn-warning btn-sm" style="margin-right: 50px;" ng-click="saveGame()" ng-disabled="p1_check && p2_check">Save game</button>
+                <button class="btn btn-danger btn-sm" ng-click="clearGame()">New game</button>
+            </div>
+        </div>
+    </tab>
+
+    <tab heading="Configuration">
+        <br>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-xs-6">
+                <label for="tenis_game">Game</label>
+                <select ng-model="game.game" id="tenis_game" class="form-control">
+                    <option value="11">11</option>
+                    <option value="21">21</option>
+                </select>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xs-6">
+                <label for="tenis_serves">Innings</label>
+                <select ng-model="game.serves" id="tenis_serves" class="form-control">
+                    <option value="2">2</option>
+                    <option value="5">5</option>
+                </select>
+            </div>
+        </div>
+        <br>
+        <div class="row">
+            <div class="col-md-6 col-lg-6 col-xs-6">
+                <label for="tenis_p1">Player 1</label>
+                <input type="text" class="form-control" id="tenis_p1" ng-model="game.p1_name" placeholder="First player" ng-disabled="game.p_iam">
+                <input type="checkbox" ng-model="game.p_iam" ng-change="setIam()" id="tenis_p_iam">&nbsp;&nbsp;<label for="tenis_p_iam">I am</label>
+            </div>
+            <div class="col-md-6 col-lg-6 col-xs-6">
+                <label for="tenis_p2">Player 2</label>
+                <input type="text" class="form-control" id="tenis_p2" ng-model="game.p2_name" placeholder="Second player">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-lg-12 col-xs-12">
+                <div ng-show="!p1_check && !p2_check">
+                    <br>
+                    <label for="tenis_start_play">Начинает игру:</label>
+                    <select ng-model="game.p_start_game" class="form-control" id="tenis_start_play" ng-change="setCurrentPlayer()">
+                        <option value="">Select player</option>
+                        <option value="-1">{{game.p1_name}}</option>
+                        <option value="1">{{game.p2_name}}</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+    </tab>
+</tabset>

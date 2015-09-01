@@ -1,0 +1,21 @@
+<h2 class="text-center">
+    Выпускной проект "Тенис"
+</h2>
+<br>
+
+<strong>total rows in DB:</strong> {{allRows | count}}<br>
+<strong>loaded:</strong> {{countLoad}}<br>
+<strong>deleted:</strong> {{deletedOk}}
+<hr>
+
+<div class="row">
+    <div class="col-md-6 col-lg-6 col-xs-6">
+        <p><strong>Load demo data</strong></p>
+        <button class="btn btn-default btn-sm" ng-click="load()">Load</button>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xs-6">
+        <p><strong>Remove demo data</strong></p>
+        <button ng-click="remove()" class="btn btn-danger btn-sm">Remove</button>
+    </div>
+</div>
+

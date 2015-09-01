@@ -1,0 +1,30 @@
+<h2 class="text-center">Tennis match detail:</h2>
+<br>
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xs-12 text-center">
+        <h1 class="text-center">{{player.p1_score}} : {{player.p2_score}}</h1>
+    </div>
+    <div class="col-md-offset-2 col-md-4 col-lg-offset-2 col-lg-4 col-xs-offset-2 col-xs-4">
+        <h4>{{player.p1_name}}</h4>
+    </div>
+    <div class="col-md-offset-2 col-md-4 col-lg-offset-2 col-lg-4 col-xs-offset-2 col-xs-4">
+        <h4>{{player.p2_name}}</h4>
+    </div>
+</div>
+<hr>
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xs-12">
+        <strong>Game:</strong> {{player.game}}<br>
+        <strong>Innings:</strong> {{player.serves}}<br>
+        <strong>Beginner:</strong> {{player.begginer}}<br>
+        <strong>Winner:</strong> {{player.p_win}}<br>
+        <strong>Date:</strong> {{player.createdAt}}<br>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xs-12 text-center">
+        <a ui-sref="app.editResult({id: player._id})" class="btn btn-warning btn-sm" style="margin-right: 50px;" ng-click="edit()" >Edit game</a>
+        <a ui-sref="app.removeResult({id: player._id})" class="btn btn-danger btn-sm" ng-click="remove()">Remove game</a>
+    </div>
+</div>

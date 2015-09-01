@@ -1,0 +1,57 @@
+<strong>total rows in DB:</strong> {{ allRows | count }}
+<hr>
+<tabset justified="true">
+
+    <tab heading="All results">
+        <br>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10 col-xs-offset-1 col-xs-10">
+                <table class="table">
+                    <thead><tr>
+                        <th class="text-center">Detail</th>
+                        <th class="text-center">Player 1</th>
+                        <th class="text-center">Player 2</th>
+                        <th class="text-center">Score</th>
+                        <th class="text-center">Winner</th>
+                        <th class="text-center">Date</th>
+                    </tr></thead>
+                    <tbody infinite-scroll="loadMoreRows()" infinite-scroll-distance="0">
+                    <tr ng-repeat="game in rowsStore | orderBy: '-doc.createdAt'" class="custom-tr">
+                        <td class="text-center"><a ui-sref="app.detailedResult({id: game.doc._id})" title="detail"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
+                        <td>{{game.doc.p1_name}}</td>
+                        <td>{{game.doc.p2_name}}</td>
+                        <td>{{game.doc.p1_score}}:{{game.doc.p2_score}}</td>
+                        <td>{{game.doc.p_win}}</td>
+                        <td>{{game.doc.createdAt}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </tab>
+    <tab heading="My results">
+        <br>
+        <div class="row">
+            <div class="col-md-offset-1 col-md-10 col-lg-offset-1 col-lg-10 col-xs-offset-1 col-xs-10">
+                <table class="table">
+                    <thead><tr>
+                        <th class="text-center">Detail</th>
+                        <th class="text-center">Player 2</th>
+                        <th class="text-center">Score</th>
+                        <th class="text-center">Winner</th>
+                        <th class="text-center">Date</th>
+                    </tr></thead>
+                    <tbody infinite-scroll="loadMoreMyRows()" infinite-scroll-distance="0">
+                    <tr ng-repeat="gameMy in rowsMyStore | orderBy: '-doc.createdAt'" class="custom-tr" ng-class="{success: gameMy.doc.p_win == 'Yuriy T'}">
+                        <td class="text-center"><a ui-sref="app.detailedResult({id: gameMy.doc._id})" title="detail"><span class="glyphicon glyphicon-eye-open" aria-hidden="true"></span></a></td>
+                        <td>{{gameMy.doc.p2_name}}</td>
+                        <td>{{gameMy.doc.p1_score}}:{{gameMy.doc.p2_score}}</td>
+                        <td>{{gameMy.doc.p_win}}</td>
+                        <td>{{gameMy.doc.createdAt}}</td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </tab>
+</tabset>

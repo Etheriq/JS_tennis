@@ -1,0 +1,18 @@
+/* app css stylesheet */
+
+body {
+    padding-top: 70px;
+}
+.tennis-error {
+    color: red;
+    font-weight: bolder;
+}
+
+.tennis-btn {
+    width: 90px;
+    height: 90px;
+    border-radius: 45px;
+}
+.custom-tr {
+    height: 200px;
+}

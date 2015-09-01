@@ -1,0 +1,74 @@
+<br>
+<div class="row">
+    <div class="col-md-6 col-lg-6 col-xs-6">
+        <label for="tenis_game">Game</label>
+        <select ng-model="game.game" id="tenis_game" class="form-control">
+            <option value="11">11</option>
+            <option value="21">21</option>
+        </select>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xs-6">
+        <label for="tenis_serves">Innings</label>
+        <select ng-model="game.serves" id="tenis_serves" class="form-control">
+            <option value="2">2</option>
+            <option value="5">5</option>
+        </select>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-6 col-lg-6 col-xs-6">
+        <label for="tenis_p1">Player 1</label>
+        <input type="text" class="form-control" id="tenis_p1" ng-model="game.p1_name" placeholder="First player" ng-disabled="game.p_iam">
+        <input type="checkbox" ng-model="game.p_iam" ng-change="setIam()" id="tenis_p_iam">&nbsp;&nbsp;<label for="tenis_p_iam">I am</label>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xs-6">
+        <label for="tenis_p2">Player 2</label>
+        <input type="text" class="form-control" id="tenis_p2" ng-model="game.p2_name" placeholder="Second player">
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-6 col-lg-6 col-xs-6">
+        <label for="tenis_p1_score">Player 1 score</label>
+        <input type="text" class="form-control" id="tenis_p1_score" ng-model="game.p1_score" placeholder="First player score">
+        <p ng-show="game.p1_score > game.game" class="tennis-error">Wrong score</p>
+    </div>
+    <div class="col-md-6 col-lg-6 col-xs-6">
+        <label for="tenis_p2_score">Player 2 score</label>
+        <input type="text" class="form-control" id="tenis_p2_score" ng-model="game.p2_score" placeholder="Second player score">
+        <p ng-show="game.p2_score > game.game" class="tennis-error">Wrong score</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xs-12">
+        <div ng-show="!p1_check && !p2_check">
+            <br>
+            <label for="tenis_start_play">Начинает игру:</label>
+            <select ng-model="game.p_start_game" class="form-control" id="tenis_start_play" ng-change="setCurrentPlayer()">
+                <option value="">Select player</option>
+                <option value="-1">{{game.p1_name}}</option>
+                <option value="1">{{game.p2_name}}</option>
+            </select>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xs-12">
+        <br>
+        <label for="tenis_winner_play">Победитель:</label>
+        <select ng-model="game.p_win" class="form-control" id="tenis_winner_play">
+            <option value="">Select player</option>
+            <option value="{{game.p1_name}}">{{game.p1_name}}</option>
+            <option value="{{game.p2_name}}">{{game.p2_name}}</option>
+        </select>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-md-12 col-lg-12 col-xs-12 text-center">
+        <button class="btn btn-warning btn-sm" style="margin-right: 50px;" ng-click="saveGame()" ng-disabled="p1_check && p2_check">Update game</button>
+        <button class="btn btn-danger btn-sm" ng-click="clearGame()">Clear game</button>
+    </div>
+</div>
